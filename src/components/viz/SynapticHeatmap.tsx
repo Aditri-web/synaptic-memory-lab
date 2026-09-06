@@ -138,22 +138,22 @@ export const SynapticHeatmap: React.FC<SynapticHeatmapProps> = ({
         const isNewlyWritten = prevMatrix ? (val > 0.001 && val !== prevMatrix[idx]) : false;
 
         if (val === 0) {
-          ctx.fillStyle = '#0a0f1d'; // dark background for inactive synapse
+          ctx.fillStyle = '#f1f5f9'; // clean light grid cell for inactive synapse
         } else {
-          // Normal active synapse: deep purple to cyan
-          const r = Math.round(99 + normalized * (16 - 99));
-          const g = Math.round(102 + normalized * (185 - 102));
-          const b = Math.round(241 + normalized * (129 - 241));
-          const alpha = 0.2 + normalized * 0.8;
+          // Vibrant active synapse: rich indigo to cyan
+          const r = Math.round(79 - normalized * 40);
+          const g = Math.round(70 + normalized * 80);
+          const b = Math.round(229 - normalized * 50);
+          const alpha = 0.35 + normalized * 0.65;
           ctx.fillStyle = `rgba(${r}, ${g}, ${b}, ${alpha})`;
         }
 
         ctx.fillRect(j * cellSize, i * cellSize, Math.max(1, cellSize - 0.2), Math.max(1, cellSize - 0.2));
 
-        // Highlight newly modified outer-product synapses with glowing pulse
+        // Highlight newly modified outer-product synapses with pulsing outline
         if (isNewlyWritten) {
-          ctx.strokeStyle = '#38bdf8';
-          ctx.lineWidth = Math.max(1, cellSize > 8 ? 1.5 : 0.8);
+          ctx.strokeStyle = '#0284c7';
+          ctx.lineWidth = Math.max(1, cellSize > 8 ? 1.8 : 1.0);
           ctx.strokeRect(j * cellSize, i * cellSize, cellSize, cellSize);
         }
       }
@@ -161,8 +161,8 @@ export const SynapticHeatmap: React.FC<SynapticHeatmapProps> = ({
 
     // Highlight row/column if active query is selected
     if (highlightUnit !== null && highlightUnit >= 0 && highlightUnit < dim) {
-      ctx.strokeStyle = '#f43f5e';
-      ctx.lineWidth = 1.5;
+      ctx.strokeStyle = '#e11d48';
+      ctx.lineWidth = 1.8;
       ctx.strokeRect(0, highlightUnit * cellSize, width, cellSize);
     }
   }, [activeMatrix, prevMatrix, dim, highlightUnit]);
@@ -177,27 +177,27 @@ export const SynapticHeatmap: React.FC<SynapticHeatmapProps> = ({
   return (
     <div className="flex flex-col items-center w-full">
       {/* Heatmap Canvas Container */}
-      <div className="relative p-2.5 rounded-xl bg-slate-950/90 border border-slate-800 shadow-2xl flex flex-col items-center">
+      <div className="relative p-2.5 rounded-xl bg-slate-50 border border-slate-200 shadow-sm flex flex-col items-center">
         <canvas
           ref={canvasRef}
           width={280}
           height={280}
-          className="rounded-lg cursor-crosshair block"
+          className="rounded-lg cursor-crosshair block border border-slate-200/80"
         />
-        <div className="absolute top-4 right-4 bg-slate-900/90 text-[10px] px-2 py-0.5 rounded border border-slate-700 text-indigo-300 font-mono backdrop-blur-sm">
+        <div className="absolute top-4 right-4 bg-white/95 text-[10px] px-2 py-0.5 rounded border border-slate-200 text-indigo-700 font-mono shadow-xs backdrop-blur-sm">
           {dim} &times; {dim} Synapses
         </div>
 
         {/* Step-by-Step Info Ribbon */}
         {hasSteps && currentStepData && (
-          <div className="w-full mt-2.5 pt-2 border-t border-slate-800/80 flex items-center justify-between text-[11px] font-mono">
-            <div className="flex items-center gap-1.5 text-indigo-300">
-              <Sparkles className="w-3 h-3 text-cyan-400 shrink-0" />
+          <div className="w-full mt-2.5 pt-2 border-t border-slate-200 flex items-center justify-between text-[11px] font-mono">
+            <div className="flex items-center gap-1.5 text-indigo-800">
+              <Sparkles className="w-3 h-3 text-cyan-600 shrink-0" />
               <span className="truncate max-w-[170px]" title={currentStepData.keyLabel}>
-                Writing: <strong className="text-white">{currentStepData.keyLabel}</strong>
+                Writing: <strong className="text-slate-900">{currentStepData.keyLabel}</strong>
               </span>
             </div>
-            <span className="text-slate-400 bg-slate-900 px-2 py-0.5 rounded text-[10px]">
+            <span className="text-slate-600 bg-white border border-slate-200 px-2 py-0.5 rounded text-[10px] shadow-xs">
               t = {currentStepData.step}/{writeSteps.length}
             </span>
           </div>
@@ -206,11 +206,11 @@ export const SynapticHeatmap: React.FC<SynapticHeatmapProps> = ({
 
       {/* Step-by-Step Animation Controls */}
       {hasSteps && (
-        <div className="w-full mt-3 p-3 rounded-xl bg-slate-900/70 border border-slate-800 flex flex-col gap-2.5">
+        <div className="w-full mt-3 p-3 rounded-xl bg-slate-50 border border-slate-200 shadow-xs flex flex-col gap-2.5">
           <div className="flex items-center justify-between text-xs">
-            <span className="font-semibold text-slate-200 flex items-center gap-1.5">
-              <span className="w-2 h-2 rounded-full bg-cyan-400 animate-pulse"></span>
-              Hebbian Write Step: <span className="font-mono text-cyan-300">{currentStepIdx + 1} of {writeSteps.length}</span>
+            <span className="font-semibold text-slate-800 flex items-center gap-1.5">
+              <span className="w-2 h-2 rounded-full bg-cyan-600 animate-pulse"></span>
+              Hebbian Write Step: <span className="font-mono text-cyan-700 font-bold">{currentStepIdx + 1} of {writeSteps.length}</span>
             </span>
             <div className="flex items-center gap-1">
               {[1, 2, 4].map((spd) => (
@@ -219,8 +219,8 @@ export const SynapticHeatmap: React.FC<SynapticHeatmapProps> = ({
                   onClick={() => setSpeedMultiplier(spd)}
                   className={`text-[10px] px-1.5 py-0.5 rounded font-mono transition-all ${
                     speedMultiplier === spd
-                      ? 'bg-indigo-600 text-white font-bold'
-                      : 'bg-slate-800 text-slate-400 hover:text-slate-200'
+                      ? 'bg-indigo-600 text-white font-bold shadow-xs'
+                      : 'bg-white border border-slate-200 text-slate-600 hover:text-slate-900 hover:bg-slate-100'
                   }`}
                 >
                   {spd}x
@@ -239,7 +239,7 @@ export const SynapticHeatmap: React.FC<SynapticHeatmapProps> = ({
               setIsPlaying(false);
               setCurrentStepIdx(Number(e.target.value));
             }}
-            className="w-full h-1.5 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-indigo-500"
+            className="w-full h-1.5 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-indigo-600"
           />
 
           {/* Playback Control Buttons */}
@@ -248,7 +248,7 @@ export const SynapticHeatmap: React.FC<SynapticHeatmapProps> = ({
               <button
                 onClick={handleReset}
                 title="Reset to Step 1"
-                className="p-1.5 rounded-lg bg-slate-800/80 text-slate-400 hover:text-white hover:bg-slate-700 transition"
+                className="p-1.5 rounded-lg bg-white border border-slate-200 text-slate-600 hover:text-slate-900 hover:bg-slate-100 shadow-xs transition"
               >
                 <RotateCcw className="w-3.5 h-3.5" />
               </button>
@@ -256,13 +256,13 @@ export const SynapticHeatmap: React.FC<SynapticHeatmapProps> = ({
                 onClick={handleStepBack}
                 disabled={currentStepIdx <= 0}
                 title="Previous Step"
-                className="p-1.5 rounded-lg bg-slate-800/80 text-slate-400 hover:text-white hover:bg-slate-700 disabled:opacity-40 disabled:cursor-not-allowed transition"
+                className="p-1.5 rounded-lg bg-white border border-slate-200 text-slate-600 hover:text-slate-900 hover:bg-slate-100 disabled:opacity-40 disabled:cursor-not-allowed shadow-xs transition"
               >
                 <SkipBack className="w-3.5 h-3.5" />
               </button>
               <button
                 onClick={togglePlay}
-                className="px-3 py-1.5 rounded-lg bg-gradient-to-r from-indigo-600 to-cyan-600 hover:from-indigo-500 hover:to-cyan-500 text-white font-medium text-xs flex items-center gap-1.5 shadow-md shadow-indigo-500/20 transition"
+                className="px-3 py-1.5 rounded-lg bg-gradient-to-r from-indigo-600 to-cyan-600 hover:from-indigo-700 hover:to-cyan-700 text-white font-medium text-xs flex items-center gap-1.5 shadow-sm shadow-indigo-500/20 transition"
               >
                 {isPlaying ? (
                   <>
@@ -280,7 +280,7 @@ export const SynapticHeatmap: React.FC<SynapticHeatmapProps> = ({
                 onClick={handleStepForward}
                 disabled={currentStepIdx >= maxStepIdx}
                 title="Next Step"
-                className="p-1.5 rounded-lg bg-slate-800/80 text-slate-400 hover:text-white hover:bg-slate-700 disabled:opacity-40 disabled:cursor-not-allowed transition"
+                className="p-1.5 rounded-lg bg-white border border-slate-200 text-slate-600 hover:text-slate-900 hover:bg-slate-100 disabled:opacity-40 disabled:cursor-not-allowed shadow-xs transition"
               >
                 <SkipForward className="w-3.5 h-3.5" />
               </button>
@@ -288,16 +288,16 @@ export const SynapticHeatmap: React.FC<SynapticHeatmapProps> = ({
 
             <button
               onClick={handleJumpToEnd}
-              className="text-[10px] px-2 py-1 rounded bg-slate-800/80 text-slate-400 hover:text-white font-mono transition"
+              className="text-[10px] px-2 py-1 rounded bg-white border border-slate-200 text-slate-600 hover:text-slate-900 font-mono shadow-xs transition"
             >
               Jump to End
             </button>
           </div>
 
           {/* Mathematical Rule Display for current step */}
-          <div className="text-[10px] bg-slate-950/80 p-2 rounded border border-slate-800/80 font-mono text-slate-400">
+          <div className="text-[10px] bg-white p-2 rounded border border-slate-200 font-mono text-slate-700 shadow-xs">
             <span className="text-slate-500">// Hebbian Rule at Step {currentStepIdx + 1}:</span><br/>
-            <span className="text-indigo-300">
+            <span className="text-indigo-700 font-semibold">
               S_{'{' + (currentStepIdx + 1) + '}'} = {lambdaDecay.toFixed(2)} &middot; S_{'{' + currentStepIdx + '}'} + {eta.toFixed(2)} &middot; (v_{'{' + (currentStepIdx + 1) + '}'} k_{'{' + (currentStepIdx + 1) + '}'}&#7488;)
             </span>
           </div>
@@ -305,10 +305,10 @@ export const SynapticHeatmap: React.FC<SynapticHeatmapProps> = ({
       )}
 
       {/* Footer Metrics */}
-      <div className="w-full flex justify-between items-center mt-3 text-xs text-slate-400 px-1">
+      <div className="w-full flex justify-between items-center mt-3 text-xs text-slate-600 px-1">
         <span className="flex items-center gap-1.5">
-          <span className="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse"></span>
-          <span>Active Synapses: <strong className="text-slate-200 font-mono">{activePercent}%</strong></span>
+          <span className="w-2.5 h-2.5 rounded-full bg-emerald-600 animate-pulse"></span>
+          <span>Active Synapses: <strong className="text-slate-900 font-mono">{activePercent}%</strong></span>
         </span>
         <span className="text-slate-500 font-mono">Target Sparsity: {(sparsity * 100).toFixed(0)}%</span>
       </div>
