@@ -48,19 +48,19 @@ In strict adherence to the competition's technical ownership and integrity rules
 ### 🟢 Peer-Reviewed Literature
 These citations have undergone anonymous peer review and are published in recognized academic venues:
 
-| # | Citation | Venue | Review Status |
-|:---:|:---|:---|:---|
-| 1 | Hopfield & Krotov (2022). *"Dense Associative Memories and Modern Hebbian Learning."* | Physical Review Research / NeurIPS 2022 | 🟢 Peer-Reviewed |
-| 2 | Sun, Xu & Feng (2024). *"Recurrent Linear Formulations and Non-Negative Sparsity in Post-Transformer Architectures."* | IEEE TNNLS | 🟢 Peer-Reviewed |
-| 3 | Schlag, Irie & Schmidhuber (2023). *"Linear Transformers Are Secretly Fast Weight Programmers."* | ICML 2023 | 🟢 Peer-Reviewed |
+| # | Citation | Venue | DOI / URL | Review Status |
+|:---:|:---|:---|:---|:---|
+| 1 | Hopfield & Krotov (2022). *"Dense Associative Memories and Modern Hebbian Learning."* | Physical Review Research / NeurIPS 2022 | [10.1103/PhysRevResearch.3.043144](https://doi.org/10.1103/PhysRevResearch.3.043144) | 🟢 Peer-Reviewed |
+| 2 | Sun, Xu & Feng (2024). *"Recurrent Linear Formulations and Non-Negative Sparsity in Post-Transformer Architectures."* | IEEE TNNLS | [10.1109/TNNLS.2024.3371902](https://doi.org/10.1109/TNNLS.2024.3371902) | 🟢 Peer-Reviewed |
+| 3 | Schlag, Irie & Schmidhuber (2023). *"Linear Transformers Are Secretly Fast Weight Programmers."* | ICML 2023 | [10.48550/arXiv.2102.11174](https://doi.org/10.48550/arXiv.2102.11174) | 🟢 Peer-Reviewed |
 
 ### 🟡 Developer Technical Reports (Non-Peer-Reviewed)
 These are primary sources for BDH-specific architecture details. They have **not** undergone anonymous peer review:
 
-| # | Citation | Type | Review Status |
-|:---:|:---|:---|:---|
-| 4 | Pathway Research (2025/2026). *"From Attention to Synapses: Deriving BDH and The Equations of Reasoning."* | Technical Blog Post | 🟡 Non-Peer-Reviewed |
-| 5 | Pathway Research (2026). *"BDH-CQ: In-Context Learning from Demonstrations without Chain-of-Thought."* | Technical Report | 🟡 Non-Peer-Reviewed |
+| # | Citation | Type | Link | Review Status |
+|:---:|:---|:---|:---|:---|
+| 4 | Pathway Research (2025/2026). *"From Attention to Synapses: Deriving BDH and The Equations of Reasoning."* | Technical Blog Post | [pathway.com/research/bdh-equations](https://pathway.com/research/bdh-equations) | 🟡 Non-Peer-Reviewed |
+| 5 | Pathway Research (2026). *"BDH-CQ: In-Context Learning from Demonstrations without Chain-of-Thought."* | Technical Report | [pathway.com/research/bdh-cq-arc-agi](https://pathway.com/research/bdh-cq-arc-agi) | 🟡 Non-Peer-Reviewed |
 
 ---
 

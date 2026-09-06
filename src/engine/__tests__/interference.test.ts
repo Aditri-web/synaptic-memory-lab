@@ -108,3 +108,28 @@ describe('runInterferenceExperiment — CAPS safety', () => {
     expect(result.totalPairs).toBe(CAPS.MAX_ASSOCIATIONS); // 1000
   });
 });
+
+// =================================================================
+// Test Suite: Step-by-Step Write Snapshots
+// =================================================================
+describe('runInterferenceExperiment — writeSteps pedagogical animation data', () => {
+  it('should capture sequential write steps with valid matrix snapshots', () => {
+    const result = runInterferenceExperiment(8, 32, 0.5, 1.0, 0.05);
+    expect(result.writeSteps).toBeDefined();
+    expect(result.writeSteps.length).toBe(8);
+
+    // First step should have valid metadata
+    expect(result.writeSteps[0].step).toBe(1);
+    expect(result.writeSteps[0].keyLabel).toBeDefined();
+    expect(result.writeSteps[0].matrixSnapshot.length).toBe(32 * 32);
+    expect(result.writeSteps[0].activeSynapseCount).toBeGreaterThanOrEqual(0);
+
+    // Final step snapshot should match finalSynapticMatrix
+    const lastStep = result.writeSteps[result.writeSteps.length - 1];
+    expect(lastStep.step).toBe(8);
+    for (let i = 0; i < lastStep.matrixSnapshot.length; i++) {
+      expect(lastStep.matrixSnapshot[i]).toBe(result.finalSynapticMatrix[i]);
+    }
+  });
+});
+

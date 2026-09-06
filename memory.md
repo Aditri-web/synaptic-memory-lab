@@ -9,7 +9,7 @@
 ---
 
 ## 1. Project Directory & Environment
-- **Workspace Location:** `/Users/aditrisingh/.gemini/antigravity-ide/scratch/synaptic-memory-lab`
+- **Workspace Location:** `./synaptic-memory-lab`
 - **Tech Stack:**
   - React 18 + Vite + TypeScript (Strict Mode)
   - Tailwind CSS + Lucide Icons + Custom Canvas/SVG Visualizations
@@ -48,7 +48,7 @@
 
 | Timestamp | Phase | Action / Milestone | Status |
 |---|---|---|---|
-| 2026-09-06 13:20 | Phase 0/1 | Initialized Vite React-TS project in `/Users/aditrisingh/.gemini/antigravity-ide/scratch/synaptic-memory-lab` | Complete |
+| 2026-09-06 13:20 | Phase 0/1 | Initialized Vite React-TS project in `./synaptic-memory-lab` | Complete |
 | 2026-09-06 13:21 | Phase 1 | Created initial `memory.md` tracking architecture, rules, and rubric | Complete |
 | 2026-09-06 13:23 | Phase 1 | Configured Tailwind CSS v4 `@tailwindcss/vite` & index.css design tokens | Complete |
 | 2026-09-06 13:25 | Phase 2 | Implemented `caps.ts`, `hebbianMemory.ts`, `kvCache.ts`, `interference.ts`, `presets.ts` | Complete |
@@ -73,6 +73,9 @@
 | 2026-09-06 15:25 | Phase 6 | Created `.github/workflows/deploy.yml` — tests gate GitHub Pages deployment | Complete |
 | 2026-09-06 15:25 | Phase 6 | Full production build passes with zero TS errors | Complete |
 | 2026-09-06 15:26 | Phase 6 | Committed & pushed all judge-pushback fixes to `main` branch | Complete |
+| 2026-09-06 17:00 | Phase 7 | Upgraded SynapticHeatmap with step-by-step write animation & timeline scrubber | Complete |
+| 2026-09-06 17:01 | Phase 7 | Dynamic JSON loading in BDHModuleSection & mathematically realistic scaling laws | Complete |
+| 2026-09-06 17:02 | Phase 7 | Added verified DOI links to citations, cleaned App.css, sanitized paths, updated PDF & zip | Complete |
 
 ---
 
@@ -84,12 +87,11 @@
    - GitHub Repo: `https://github.com/Aditri-web/synaptic-memory-lab`
 3. **One-Page Concept Summary PDF (500–950 words):**
    - In-repo location: `public/DataForge_2026_One_Page_Concept_Summary.pdf`
-   - Desktop Location: `/Users/aditrisingh/Desktop/DataForge_2026_One_Page_Concept_Summary.pdf`
    - Direct web download button included in the live application navigation header.
 4. **Complete Judge-Ready Documentation:**
-   - [`README.md`](file:///Users/aditrisingh/.gemini/antigravity-ide/scratch/synaptic-memory-lab/README.md) (Falsifiable claim, audience, prerequisites, objectives, architecture, component roles, reproduction instructions, and primary citations).
-   - [`PROVENANCE.md`](file:///Users/aditrisingh/.gemini/antigravity-ide/scratch/synaptic-memory-lab/PROVENANCE.md) (AI-assistance disclosure, asset ledger, data sources, and toy model disclosure).
-   - [`LICENSE`](file:///Users/aditrisingh/.gemini/antigravity-ide/scratch/synaptic-memory-lab/LICENSE) (MIT Open Source License).
+   - `README.md` (Falsifiable claim, audience, prerequisites, objectives, architecture, component roles, reproduction instructions, and primary citations).
+   - `PROVENANCE.md` (AI-assistance disclosure, asset ledger, data sources, and toy model disclosure).
+   - `LICENSE` (MIT Open Source License).
 5. **Primary Research Citations (2022–2026):**
    - Pathway (2025/2026): *"From Attention to Synapses: Deriving BDH and The Equations of Reasoning"*
    - Pathway (2026): *"BDH-CQ: In-Context Learning from Demonstrations without Chain-of-Thought"*

@@ -196,6 +196,9 @@ export const SandboxSection: React.FC = () => {
             dim={simulationResult.dimension}
             sparsity={simulationResult.sparsity}
             highlightUnit={null}
+            writeSteps={simulationResult.writeSteps}
+            eta={eta}
+            lambdaDecay={lambdaDecay}
           />
 
           {/* Step-by-Step Retrieval Error Curve (SVG) */}

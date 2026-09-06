@@ -9,6 +9,15 @@ import {
 } from './hebbianMemory';
 import { CAPS } from './caps';
 
+export interface SynapticWriteStep {
+  step: number;
+  keyLabel: string;
+  valueLabel: string;
+  matrixSnapshot: Float32Array;
+  activeSynapseCount: number;
+  sparsityPercent: number;
+}
+
 export interface InterferenceSimulationResult {
   dimension: number;
   totalPairs: number;
@@ -20,6 +29,7 @@ export interface InterferenceSimulationResult {
   capacityLimitReachedAt: number | null;
   accuracyCurve: { pairsStored: number; meanSimilarity: number }[];
   finalSynapticMatrix: Float32Array;
+  writeSteps: SynapticWriteStep[];
 }
 
 const COMMON_KEYS = [
@@ -48,6 +58,7 @@ export function runInterferenceExperiment(
   let matrix = initializeSynapticMatrix(safeDim);
   const pairs: AssociativePair[] = [];
   const accuracyCurve: { pairsStored: number; meanSimilarity: number }[] = [];
+  const writeSteps: SynapticWriteStep[] = [];
 
   // Generate and sequentially write associative pairs
   for (let i = 0; i < safeCount; i++) {
@@ -68,6 +79,22 @@ export function runInterferenceExperiment(
 
     // Write into synaptic matrix via Hebbian rule
     matrix = hebbianWrite(matrix, safeDim, keyVec, valVec, eta, lambdaDecay);
+
+    // Record write step snapshot (up to 60 steps max for optimal memory efficiency)
+    if (safeCount <= 60 || i % Math.ceil(safeCount / 60) === 0 || i === safeCount - 1) {
+      let activeCount = 0;
+      for (let c = 0; c < matrix.length; c++) {
+        if (matrix[c] > 0.001) activeCount++;
+      }
+      writeSteps.push({
+        step: i + 1,
+        keyLabel,
+        valueLabel,
+        matrixSnapshot: new Float32Array(matrix),
+        activeSynapseCount: activeCount,
+        sparsityPercent: parseFloat(((activeCount / (safeDim * safeDim)) * 100).toFixed(1)),
+      });
+    }
 
     // Sample retrieval across all currently stored items every few steps
     if (i === 0 || (i + 1) % Math.max(1, Math.floor(safeCount / 20)) === 0 || i === safeCount - 1) {
@@ -129,5 +156,6 @@ export function runInterferenceExperiment(
     capacityLimitReachedAt: capacityLimit,
     accuracyCurve,
     finalSynapticMatrix: matrix,
+    writeSteps,
   };
 }

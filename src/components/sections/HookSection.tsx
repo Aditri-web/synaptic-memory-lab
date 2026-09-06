@@ -116,6 +116,9 @@ export const HookSection: React.FC<HookSectionProps> = ({
             dim={simulationResult.dimension}
             sparsity={simulationResult.sparsity}
             highlightUnit={null}
+            writeSteps={simulationResult.writeSteps}
+            eta={currentPreset.eta}
+            lambdaDecay={currentPreset.lambdaDecay}
           />
 
           <div className="text-[11px] text-slate-400 bg-slate-950/70 p-2.5 rounded-lg border border-slate-800">
