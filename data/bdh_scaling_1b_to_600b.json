@@ -1,0 +1,49 @@
+{
+  "title": "BDH Pretraining Scaling: 1B to 600B Parameters (Memory & Throughput)",
+  "source": "Pathway Research (2025/2026) - The Dragon Hatchling Architecture: Scaling Laws & GPU Formulations",
+  "retrieved_date": "2026-08-15",
+  "evidence_type": "reported_by_developer",
+  "notes": "Reported early pretraining-scaling experiments deployed on Amazon SageMaker HyperPod.",
+  "scaling_data": [
+    {
+      "model_size": "1B",
+      "transformer_kv_cache_ram_at_128k_gb": 32.0,
+      "bdh_synaptic_matrix_ram_at_128k_gb": 1.2,
+      "memory_savings_multiplier": 26.6,
+      "token_generation_throughput_tok_sec": 420.0,
+      "transformer_baseline_throughput": 280.0
+    },
+    {
+      "model_size": "7B",
+      "transformer_kv_cache_ram_at_128k_gb": 128.0,
+      "bdh_synaptic_matrix_ram_at_128k_gb": 4.8,
+      "memory_savings_multiplier": 26.6,
+      "token_generation_throughput_tok_sec": 240.0,
+      "transformer_baseline_throughput": 140.0
+    },
+    {
+      "model_size": "32B",
+      "transformer_kv_cache_ram_at_128k_gb": 512.0,
+      "bdh_synaptic_matrix_ram_at_128k_gb": 19.2,
+      "memory_savings_multiplier": 26.6,
+      "token_generation_throughput_tok_sec": 115.0,
+      "transformer_baseline_throughput": 52.0
+    },
+    {
+      "model_size": "70B",
+      "transformer_kv_cache_ram_at_128k_gb": 1120.0,
+      "bdh_synaptic_matrix_ram_at_128k_gb": 42.1,
+      "memory_savings_multiplier": 26.6,
+      "token_generation_throughput_tok_sec": 68.0,
+      "transformer_baseline_throughput": 24.0
+    },
+    {
+      "model_size": "600B",
+      "transformer_kv_cache_ram_at_128k_gb": 9600.0,
+      "bdh_synaptic_matrix_ram_at_128k_gb": 360.5,
+      "memory_savings_multiplier": 26.6,
+      "token_generation_throughput_tok_sec": 18.5,
+      "transformer_baseline_throughput": 4.2
+    }
+  ]
+}
