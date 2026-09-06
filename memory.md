@@ -61,6 +61,18 @@
 | 2026-09-06 13:49 | Phase 5 | Published public GitHub repository at `https://github.com/Aditri-web/synaptic-memory-lab` | Complete |
 | 2026-09-06 13:51 | Phase 5 | Deployed live web application to GitHub Pages at `https://aditri-web.github.io/synaptic-memory-lab/` | Complete |
 | 2026-09-06 14:03 | Phase 5 | Removed deprecated `public` property from `vercel.json` schema & pushed fix | Complete |
+| 2026-09-06 15:18 | Phase 6 | Installed Vitest, created `vitest.config.ts`, added `"test"` script to package.json | Complete |
+| 2026-09-06 15:18 | Phase 6 | Wrote 16 unit tests for `hebbianMemory.ts` (write/read/similarity/norm/sparsity) | Complete |
+| 2026-09-06 15:18 | Phase 6 | Wrote 7 unit tests for `interference.ts` (capacity cliff/degradation/CAPS clamping) | Complete |
+| 2026-09-06 15:18 | Phase 6 | Wrote 10 unit tests for `kvCache.ts` (formula correctness/linearity/crossover) | Complete |
+| 2026-09-06 15:18 | Phase 6 | **All 33 unit tests passing** — validates equations vs hand-calculated known values | Complete |
+| 2026-09-06 15:22 | Phase 6 | Captured 3 tab screenshots (Hook, Sandbox, BDH Deep Dive) for README visual demo | Complete |
+| 2026-09-06 15:23 | Phase 6 | Rewrote README with live demo badge, screenshots, test results table, structured citations | Complete |
+| 2026-09-06 15:24 | Phase 6 | Updated PROVENANCE.md with citation classification table (🟢 Peer-Reviewed / 🟡 Tech Report) | Complete |
+| 2026-09-06 15:25 | Phase 6 | Added peer-review status badges to BDHModuleSection.tsx citations + ICML 2023 reference | Complete |
+| 2026-09-06 15:25 | Phase 6 | Created `.github/workflows/deploy.yml` — tests gate GitHub Pages deployment | Complete |
+| 2026-09-06 15:25 | Phase 6 | Full production build passes with zero TS errors | Complete |
+| 2026-09-06 15:26 | Phase 6 | Committed & pushed all judge-pushback fixes to `main` branch | Complete |
 
 ---
 

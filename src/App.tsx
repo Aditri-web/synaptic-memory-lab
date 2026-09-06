@@ -78,7 +78,7 @@ export function App() {
               BDH Deep Dive
             </button>
             <a
-              href="/DataForge_2026_One_Page_Concept_Summary.pdf"
+              href="./DataForge_2026_One_Page_Concept_Summary.pdf"
               download="DataForge_2026_One_Page_Concept_Summary.pdf"
               className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold bg-emerald-600/90 hover:bg-emerald-500 text-white shadow-md transition-all ml-1"
             >
