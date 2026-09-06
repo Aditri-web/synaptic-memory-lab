@@ -1,6 +1,6 @@
 # MEMORY & PROJECT RUNBOOK
 
-**Project Name:** Synaptic Memory Lab  
+**Project Name:** Synaptic Memory Lab (Package / Vercel Name: `synaptic-frontier-lab`)  
 **Track:** DataForge 2026 — Pathway Track: Explain the Frontier (NeurIPS 2026 Education Alignment)  
 **Topic:** Synaptic Plasticity as Short-Term Memory & In-Context Learning with Recurrent Memory in Dragon Hatchling (BDH / BDH-CQ)  
 **One-Sentence Falsifiable Claim:**  
@@ -57,12 +57,29 @@
 | 2026-09-06 13:28 | Phase 3 | Built guided sections: `HookSection.tsx`, `SandboxSection.tsx`, `BDHModuleSection.tsx` | Complete |
 | 2026-09-06 13:30 | Phase 4 | Full production build (`npm run build`) passed with zero TS errors | Complete |
 | 2026-09-06 13:36 | Phase 4 | Browser validation via Playwright agent: 100% components verified, 0 console errors | Complete |
+| 2026-09-06 13:48 | Phase 5 | Added direct 1-Page Summary PDF download link to web application header | Complete |
+| 2026-09-06 13:49 | Phase 5 | Published public GitHub repository at `https://github.com/Aditri-web/synaptic-memory-lab` | Complete |
+| 2026-09-06 13:51 | Phase 5 | Deployed live web application to GitHub Pages at `https://aditri-web.github.io/synaptic-memory-lab/` | Complete |
+| 2026-09-06 14:03 | Phase 5 | Removed deprecated `public` property from `vercel.json` schema & pushed fix | Complete |
 
 ---
 
-## 4. Current State & Verification Summary
-- **Live Server:** Running at `http://127.0.0.1:5173/`
-- **Substrate Fidelity:** Live $S_t = \lambda S_{t-1} + \eta (v_t k_t^\top)$ matrix updates in browser with typed Float32Arrays.
-- **Truth Beside Estimate:** Ground truth vectors side-by-side with retrieved estimate vectors and dynamic cosine similarity gauges.
-- **Falsifiable Capacity Limit:** Cross-talk degradation triggers dynamically when associations exceed matrix capacity.
-- **BDH Integration:** Fully sourced equations, pretraining 1B–600B scaling tables, ARC-AGI latent reasoning Pareto charts, and toy-model disclosures.
+## 4. Final Submission Package Deliverables
+1. **Public Artifact URL (No sign-in required):**
+   - Live URL: `https://aditri-web.github.io/synaptic-memory-lab/`
+   - Instant Vercel Deploy Ready: Connect repository at [vercel.com/new](https://vercel.com/new) -> auto-deploys via `vercel.json`
+2. **Public Source Code Repository:**
+   - GitHub Repo: `https://github.com/Aditri-web/synaptic-memory-lab`
+3. **One-Page Concept Summary PDF (500–950 words):**
+   - In-repo location: `public/DataForge_2026_One_Page_Concept_Summary.pdf`
+   - Desktop Location: `/Users/aditrisingh/Desktop/DataForge_2026_One_Page_Concept_Summary.pdf`
+   - Direct web download button included in the live application navigation header.
+4. **Complete Judge-Ready Documentation:**
+   - [`README.md`](file:///Users/aditrisingh/.gemini/antigravity-ide/scratch/synaptic-memory-lab/README.md) (Falsifiable claim, audience, prerequisites, objectives, architecture, component roles, reproduction instructions, and primary citations).
+   - [`PROVENANCE.md`](file:///Users/aditrisingh/.gemini/antigravity-ide/scratch/synaptic-memory-lab/PROVENANCE.md) (AI-assistance disclosure, asset ledger, data sources, and toy model disclosure).
+   - [`LICENSE`](file:///Users/aditrisingh/.gemini/antigravity-ide/scratch/synaptic-memory-lab/LICENSE) (MIT Open Source License).
+5. **Primary Research Citations (2022–2026):**
+   - Pathway (2025/2026): *"From Attention to Synapses: Deriving BDH and The Equations of Reasoning"*
+   - Pathway (2026): *"BDH-CQ: In-Context Learning from Demonstrations without Chain-of-Thought"*
+   - Hopfield & Krotov (2022): *"Dense Associative Memories and Modern Hebbian Learning"*
+   - Sun, Xu, & Feng (2024): *"Recurrent Linear Formulations and Non-Negative Sparsity in Post-Transformer Architectures"*

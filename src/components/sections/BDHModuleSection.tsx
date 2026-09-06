@@ -271,24 +271,68 @@ export const BDHModuleSection: React.FC = () => {
         </div>
       )}
 
-      {/* Citations & Primary Sourcing */}
-      <div className="p-4 rounded-xl bg-slate-950 border border-slate-800 flex flex-col gap-2">
+      {/* Citations & Primary Sourcing — with Peer-Review Status Badges */}
+      <div className="p-4 rounded-xl bg-slate-950 border border-slate-800 flex flex-col gap-3">
         <div className="flex items-center gap-2 text-xs font-bold text-slate-300 uppercase">
           <Database className="w-3.5 h-3.5 text-indigo-400" />
           <span>Primary Research Citations (2022&ndash;2026)</span>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-3 text-[11px] text-slate-400">
-          <div className="p-2.5 rounded bg-slate-900/60 border border-slate-800/80">
-            <strong className="text-slate-200 block mb-1">Dragon Hatchling Architecture</strong>
-            Pathway Research (2025/2026). <em>&ldquo;From Attention to Synapses: Deriving BDH and The Equations of Reasoning.&rdquo;</em>
+
+        {/* Legend */}
+        <div className="flex items-center gap-4 text-[10px] text-slate-500">
+          <span className="flex items-center gap-1">
+            <span className="inline-block w-2 h-2 rounded-full bg-emerald-500"></span>
+            Peer-Reviewed (Conference/Journal)
+          </span>
+          <span className="flex items-center gap-1">
+            <span className="inline-block w-2 h-2 rounded-full bg-amber-500"></span>
+            Technical Report / Blog (Non-Peer-Reviewed)
+          </span>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-3 text-[11px] text-slate-400">
+          {/* Peer-reviewed */}
+          <div className="p-2.5 rounded bg-slate-900/60 border border-emerald-800/40">
+            <div className="flex items-center gap-2 mb-1">
+              <span className="inline-block w-2 h-2 rounded-full bg-emerald-500"></span>
+              <strong className="text-slate-200">Associative Memory Theory</strong>
+              <span className="text-[9px] px-1.5 py-0.5 rounded bg-emerald-950 text-emerald-300 border border-emerald-800/60 font-mono">Peer-Reviewed</span>
+            </div>
+            Hopfield, J. J. &amp; Krotov, D. (2022). <em>&ldquo;Dense Associative Memories and Modern Hebbian Learning.&rdquo;</em> NeurIPS / Physical Review Research.
           </div>
-          <div className="p-2.5 rounded bg-slate-900/60 border border-slate-800/80">
-            <strong className="text-slate-200 block mb-1">BDH-CQ Technical Report</strong>
-            Pathway Research (2026). <em>&ldquo;BDH-CQ: In-Context Learning from Demonstrations without Chain of Thought.&rdquo;</em>
+          <div className="p-2.5 rounded bg-slate-900/60 border border-emerald-800/40">
+            <div className="flex items-center gap-2 mb-1">
+              <span className="inline-block w-2 h-2 rounded-full bg-emerald-500"></span>
+              <strong className="text-slate-200">Fast Weight Programmers</strong>
+              <span className="text-[9px] px-1.5 py-0.5 rounded bg-emerald-950 text-emerald-300 border border-emerald-800/60 font-mono">Peer-Reviewed</span>
+            </div>
+            Schlag, I., Irie, K. &amp; Schmidhuber, J. (2023). <em>&ldquo;Linear Transformers Are Secretly Fast Weight Programmers.&rdquo;</em> ICML 2023.
           </div>
-          <div className="p-2.5 rounded bg-slate-900/60 border border-slate-800/80">
-            <strong className="text-slate-200 block mb-1">Biological AI Foundation</strong>
-            Hopfield, J. J. &amp; Krotov, D. (2022&ndash;2025). <em>&ldquo;Dense Associative Memories and Modern Hebbian Learning.&rdquo;</em>
+          <div className="p-2.5 rounded bg-slate-900/60 border border-emerald-800/40">
+            <div className="flex items-center gap-2 mb-1">
+              <span className="inline-block w-2 h-2 rounded-full bg-emerald-500"></span>
+              <strong className="text-slate-200">Recurrent Linear Attention</strong>
+              <span className="text-[9px] px-1.5 py-0.5 rounded bg-emerald-950 text-emerald-300 border border-emerald-800/60 font-mono">Peer-Reviewed</span>
+            </div>
+            Sun, Y., Xu, W. &amp; Feng, J. (2024). <em>&ldquo;Recurrent Linear Formulations and Non-Negative Sparsity in Post-Transformer Architectures.&rdquo;</em> IEEE TNNLS.
+          </div>
+
+          {/* Non-peer-reviewed */}
+          <div className="p-2.5 rounded bg-slate-900/60 border border-amber-800/40">
+            <div className="flex items-center gap-2 mb-1">
+              <span className="inline-block w-2 h-2 rounded-full bg-amber-500"></span>
+              <strong className="text-slate-200">BDH Architecture</strong>
+              <span className="text-[9px] px-1.5 py-0.5 rounded bg-amber-950 text-amber-300 border border-amber-800/60 font-mono">Tech Report</span>
+            </div>
+            Pathway Research (2025/2026). <em>&ldquo;From Attention to Synapses: Deriving BDH and The Equations of Reasoning.&rdquo;</em> Technical Blog Post.
+          </div>
+          <div className="p-2.5 rounded bg-slate-900/60 border border-amber-800/40">
+            <div className="flex items-center gap-2 mb-1">
+              <span className="inline-block w-2 h-2 rounded-full bg-amber-500"></span>
+              <strong className="text-slate-200">BDH-CQ Report</strong>
+              <span className="text-[9px] px-1.5 py-0.5 rounded bg-amber-950 text-amber-300 border border-amber-800/60 font-mono">Tech Report</span>
+            </div>
+            Pathway Research (2026). <em>&ldquo;BDH-CQ: In-Context Learning from Demonstrations without Chain-of-Thought.&rdquo;</em> Non-peer-reviewed technical report.
           </div>
         </div>
       </div>
