@@ -76,6 +76,8 @@
 | 2026-09-06 17:00 | Phase 7 | Upgraded SynapticHeatmap with step-by-step write animation & timeline scrubber | Complete |
 | 2026-09-06 17:01 | Phase 7 | Dynamic JSON loading in BDHModuleSection & mathematically realistic scaling laws | Complete |
 | 2026-09-06 17:02 | Phase 7 | Added verified DOI links to citations, cleaned App.css, sanitized paths, updated PDF & zip | Complete |
+| 2026-09-06 17:25 | Phase 8 | Corrected Titans & GLA identifiers, anchored ARC-AGI to Pathway published 29.5%, reconciled citations | Complete |
+| 2026-09-06 17:45 | Phase 9 | Transitioned UI to clean, academic light theme, verified 34/34 tests, deployed to GitHub Pages | Complete |
 
 ---
 
@@ -86,14 +88,17 @@
 2. **Public Source Code Repository:**
    - GitHub Repo: `https://github.com/Aditri-web/synaptic-memory-lab`
 3. **One-Page Concept Summary PDF (500–950 words):**
-   - In-repo location: `public/DataForge_2026_One_Page_Concept_Summary.pdf`
+   - In-repo location: `public/DataForge_2026_One_Page_Concept_Summary.pdf` (and root `DataForge_2026_One_Page_Concept_Summary.pdf`)
    - Direct web download button included in the live application navigation header.
 4. **Complete Judge-Ready Documentation:**
    - `README.md` (Falsifiable claim, audience, prerequisites, objectives, architecture, component roles, reproduction instructions, and primary citations).
    - `PROVENANCE.md` (AI-assistance disclosure, asset ledger, data sources, and toy model disclosure).
+   - `DEFENSE.md` (Verification checklist, evidence provenance, and benchmark defense).
    - `LICENSE` (MIT Open Source License).
 5. **Primary Research Citations (2022–2026):**
-   - Pathway (2025/2026): *"From Attention to Synapses: Deriving BDH and The Equations of Reasoning"*
-   - Pathway (2026): *"BDH-CQ: In-Context Learning from Demonstrations without Chain-of-Thought"*
-   - Hopfield & Krotov (2022): *"Dense Associative Memories and Modern Hebbian Learning"*
-   - Sun, Xu, & Feng (2024): *"Recurrent Linear Formulations and Non-Negative Sparsity in Post-Transformer Architectures"*
+   - Sun et al. (2023): *"Retentive Network: A Successor to Transformer for Large Language Models"* (arXiv:2307.08621)
+   - Yang et al. (ICML 2024): *"Gated Linear Attention Transformers with Hardware-Efficient Training"* (PMLR 235:56501–56523)
+   - Behrouz et al. (2024): *"Titans: Learning to Memorize at Test Time"* (arXiv:2501.00663)
+   - Deletang et al. (ICLR 2023): *"Neural Networks and the Chomsky Hierarchy"* (arXiv:2207.02098)
+   - Pathway (2025/2026): *"From Attention to Synapses: Deriving BDH and The Equations of Reasoning"* (Technical Report)
+   - Pathway (2026): *"BDH-CQ: In-Context Learning from Demonstrations without Chain-of-Thought"* (Technical Report)
