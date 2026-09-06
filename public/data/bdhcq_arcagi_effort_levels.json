@@ -1,9 +1,9 @@
 {
-  "title": "BDH-CQ ARC-AGI Task Performance across Latent Reasoning Effort Levels",
-  "source": "Pathway Technical Report (2026) - BDH-CQ: In-Context Learning from Demonstrations without Chain of Thought",
+  "title": "BDH-CQ ARC-AGI Task Performance across Latent Reasoning Effort Levels (Illustrative Projection)",
+  "source": "Pathway Technical Report (2026) - BDH-CQ: In-Context Learning from Demonstrations without Chain of Thought (Qualitative Mechanism)",
   "retrieved_date": "2026-08-20",
-  "evidence_type": "benchmark_result",
-  "notes": "Shows performance scaling purely from latent recurrent state refinement without verbalized chain of thought tokens or test-time backpropagation.",
+  "evidence_type": "illustrative_projection_for_teaching",
+  "notes": "Illustrative educational effort curve demonstrating test-time latent recurrent state refinement on ARC-AGI style tasks without verbalized chain of thought tokens or test-time backpropagation. Consistent with Pathway's qualitative descriptions of BDH-CQ; exact accuracy and latency values are illustrative pedagogical estimates designed to visualize the cost-latency Pareto frontier.",
   "effort_levels": [
     {
       "effort_level": "Low Effort (1 Recurrent Step)",

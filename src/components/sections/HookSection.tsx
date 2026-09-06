@@ -52,6 +52,14 @@ export const HookSection: React.FC<HookSectionProps> = ({
         <p className="text-xs text-slate-400 max-w-3xl">
           Observe the simulation running right now below. No blank canvas. No dummy animations. Every dot and curve is calculated live from the Hebbian update equations: <code className="text-indigo-300 bg-slate-900 px-1.5 py-0.5 rounded font-mono">S_t = &lambda; S_{'{t-1}'} + &eta; (v_t k_t^T)</code>.
         </p>
+
+        <div className="flex items-center gap-3 text-[11px] font-mono text-slate-400 pt-1">
+          <span className="flex items-center gap-1.5 text-cyan-400">
+            <span className="w-1.5 h-1.5 rounded-full bg-cyan-400"></span>
+            <span>Substrate Bounds:</span>
+          </span>
+          <span>$d \in [16, 256]$ &bull; $N \in [1, 2000]$ (strictly stated per design discipline; computed client-side at 60 FPS)</span>
+        </div>
       </div>
 
       {/* Preset Selector Buttons */}

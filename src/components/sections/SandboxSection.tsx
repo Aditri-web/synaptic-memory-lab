@@ -59,6 +59,17 @@ export const SandboxSection: React.FC = () => {
         </button>
       </div>
 
+      {/* Explicit System Bounds per "No hidden limits" design standard */}
+      <div className="flex items-center justify-between gap-3 text-[11px] font-mono text-slate-400 bg-slate-900/80 px-3.5 py-2 rounded-xl border border-slate-800">
+        <span className="flex items-center gap-2">
+          <span className="w-2 h-2 rounded-full bg-cyan-400"></span>
+          <span><strong>Stated Substrate Bounds:</strong> Dimension $d \in [16, 256]$ &bull; Associations $N \in [1, 2000]$ &bull; Sparsity $s \in [1\%, 30\%]$</span>
+        </span>
+        <span className="text-[10px] text-slate-500 bg-slate-950 px-2 py-0.5 rounded border border-slate-800">
+          60 FPS Client-Side Budget
+        </span>
+      </div>
+
       {/* Control Sliders Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4 p-4 rounded-xl bg-slate-900/80 border border-slate-800 shadow-inner">
         {/* Slider 1: Stored Associations N */}

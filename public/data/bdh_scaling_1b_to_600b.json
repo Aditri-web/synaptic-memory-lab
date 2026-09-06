@@ -1,9 +1,9 @@
 {
-  "title": "BDH Pretraining Scaling: 1B to 600B Parameters (Memory & Throughput)",
-  "source": "Pathway Research (2025/2026) - The Dragon Hatchling Architecture: Scaling Laws & GPU Formulations",
+  "title": "BDH Pretraining Scaling: 1B to 600B Parameters (Illustrative Architectural Projection)",
+  "source": "Pathway Research (2025/2026) - The Dragon Hatchling Architecture & Equations of Reasoning (Qualitative Principles)",
   "retrieved_date": "2026-08-15",
-  "evidence_type": "reported_by_developer",
-  "notes": "Pretraining-scaling benchmarks on Amazon SageMaker HyperPod clusters. Demonstrates progressive memory savings from O(1) recurrent synaptic state versus O(N) linear-growth Transformer KV cache across 128k context windows.",
+  "evidence_type": "illustrative_projection_for_teaching",
+  "notes": "Illustrative educational scaling model based on standard transformer layer/head dimensions (Llama-style GQA, FP16) vs fixed-shape recurrent synaptic state at 128k context length. Consistent with Pathway's qualitative description of O(1) vs O(N) memory scaling; exact RAM and throughput figures are illustrative pedagogical projections, not quoted from a published benchmark table.",
   "scaling_data": [
     {
       "model_size": "1B",
