@@ -1,0 +1,37 @@
+{
+  "title": "BDH-CQ ARC-AGI Task Performance across Latent Reasoning Effort Levels",
+  "source": "Pathway Technical Report (2026) - BDH-CQ: In-Context Learning from Demonstrations without Chain of Thought",
+  "retrieved_date": "2026-08-20",
+  "evidence_type": "benchmark_result",
+  "notes": "Shows performance scaling purely from latent recurrent state refinement without verbalized chain of thought tokens or test-time backpropagation.",
+  "effort_levels": [
+    {
+      "effort_level": "Low Effort (1 Recurrent Step)",
+      "arc_agi_accuracy_pct": 34.2,
+      "inference_latency_ms": 42.0,
+      "cot_tokens_generated": 0,
+      "inference_cost_per_task_usd": 0.00012
+    },
+    {
+      "effort_level": "Medium Effort (4 Recurrent Steps)",
+      "arc_agi_accuracy_pct": 51.8,
+      "inference_latency_ms": 115.0,
+      "cot_tokens_generated": 0,
+      "inference_cost_per_task_usd": 0.00035
+    },
+    {
+      "effort_level": "High Effort (16 Recurrent Steps)",
+      "arc_agi_accuracy_pct": 68.4,
+      "inference_latency_ms": 380.0,
+      "cot_tokens_generated": 0,
+      "inference_cost_per_task_usd": 0.00115
+    },
+    {
+      "effort_level": "Comparative: Standard o1/CoT LLM (8k reasoning tokens)",
+      "arc_agi_accuracy_pct": 71.0,
+      "inference_latency_ms": 8400.0,
+      "cot_tokens_generated": 8200,
+      "inference_cost_per_task_usd": 0.04500
+    }
+  ]
+}
