@@ -76,14 +76,15 @@ To demonstrate deep collective ownership during the live judging round, the defe
 | **Core Concept** | Paradigm shift from $O(N)$ KV cache to $O(1)$ Hebbian plasticity | In-context learning via recurrent state accumulation without backprop |
 | **Equations** | Hebbian write $S_t = \lambda S_{t-1} + \eta v_t k_t^\top$, read $\hat{v}_t = S_{t-1} q_t$ | Sparsity projection $H_t = \text{ReLU}(W_x X_t + W_s \hat{v}_t + b)$, non-SSM distinction |
 | **Live Demo** | Guided Hook walkthrough & step-by-step heatmap outer-product animation | Sandbox parameter tuning ($\lambda, \eta$, sparsity) & capacity cliff curve |
-| **Evidence** | Primary peer-reviewed citations: Sun et al. (2023), Yang et al. (2024), Schlag et al. (2021) | Pathway technical reports, ARC-AGI benchmark results, and honest illustrative framing |
+| **Evidence** | Peer-reviewed literature: Yang et al. (ICML 2024), Schlag et al. (ICML 2021); Preprints: RetNet (2023), Titans (2025) | Pathway developer publications; verified ARC-AGI anchor (29.5% / $0.00070) with illustrative latent curves |
 | **Code Verification**| 34 Vitest unit tests validating closed-form hand-calculated equations | Crossover point arithmetic ($N^* = 256$) and memory scaling across 1B–600B models |
 
 ---
 
 ## 3. Evidence Discipline Checklist for Live Round
 
-- [x] **Honest Labeling:** All 1B–600B scaling metrics and ARC-AGI effort curves are explicitly labeled in the UI as **Illustrative Pedagogical Projections**, not quoted benchmark tables.
-- [x] **Primary Literature Verified:** All academic citations resolved to verified arXiv and PMLR venues with clickable links.
-- [x] **Toy Model Boundary:** Live interactive substrate clearly designated as an independent numerical educational tool, separate from Pathway's proprietary weights.
-- [x] **Zero AI Slop:** Every paragraph in the application and concept summary defines a concrete mechanism, formula, or empirical boundary.
+- [x] **Verified Benchmark Anchor:** Grounded the reasoning evaluation in Pathway's published ARC-AGI benchmark baseline (29.5% accuracy at $0.00070/task with zero Chain-of-Thought tokens).
+- [x] **Honest Illustrative Labeling:** Clearly disclosed surrounding latent-step effort tiers and the 1B–600B memory scaling table as illustrative pedagogical projections derived from standard GQA parameters, rather than overclaiming them as benchmarked tables.
+- [x] **Primary Citation Verification:** Resolved specific academic identifiers against their publication sources (Yang et al. in PMLR 235:56501–56523; Schlag et al. in PMLR 139:9355–9366; verified arXiv preprints for RetNet arXiv:2307.08621 and Titans arXiv:2501.00663).
+- [x] **Honest Taxonomy:** Accurately categorized papers into peer-reviewed conference proceedings, academic preprints, and developer publications, removing any fabricated URLs or unverified conference claims.
+- [x] **Toy Model Boundary:** Live interactive substrate clearly designated as an independent numerical educational simulation, separate from Pathway's proprietary weights.

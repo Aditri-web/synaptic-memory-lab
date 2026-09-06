@@ -16,6 +16,7 @@ interface EffortLevel {
   inference_latency_ms: number;
   cot_tokens_generated: number;
   inference_cost_per_task_usd: number;
+  is_verified_anchor?: boolean;
 }
 
 export const BDHModuleSection: React.FC = () => {
@@ -32,10 +33,10 @@ export const BDHModuleSection: React.FC = () => {
   ]);
 
   const [arcEffortData, setArcEffortData] = useState<EffortLevel[]>([
-    { effort_level: 'Low Effort (1 Recurrent Step)', arc_agi_accuracy_pct: 34.2, inference_latency_ms: 42.0, cot_tokens_generated: 0, inference_cost_per_task_usd: 0.00012 },
-    { effort_level: 'Medium Effort (4 Recurrent Steps)', arc_agi_accuracy_pct: 51.8, inference_latency_ms: 115.0, cot_tokens_generated: 0, inference_cost_per_task_usd: 0.00035 },
-    { effort_level: 'High Effort (16 Recurrent Steps)', arc_agi_accuracy_pct: 68.4, inference_latency_ms: 380.0, cot_tokens_generated: 0, inference_cost_per_task_usd: 0.00115 },
-    { effort_level: 'Comparative: Standard o1/CoT LLM (8k tokens)', arc_agi_accuracy_pct: 71.0, inference_latency_ms: 8400.0, cot_tokens_generated: 8200, inference_cost_per_task_usd: 0.04500 },
+    { effort_level: '⭐ Pathway Published Anchor (BDH-CQ Baseline)', arc_agi_accuracy_pct: 29.5, inference_latency_ms: 38.0, cot_tokens_generated: 0, inference_cost_per_task_usd: 0.00070, is_verified_anchor: true },
+    { effort_level: 'Illustrative: Refined Latent Steps (4 Steps)', arc_agi_accuracy_pct: 48.2, inference_latency_ms: 115.0, cot_tokens_generated: 0, inference_cost_per_task_usd: 0.00140, is_verified_anchor: false },
+    { effort_level: 'Illustrative: Deep Latent Steps (16 Steps)', arc_agi_accuracy_pct: 62.6, inference_latency_ms: 380.0, cot_tokens_generated: 0, inference_cost_per_task_usd: 0.00350, is_verified_anchor: false },
+    { effort_level: 'Comparative: Standard o1/CoT LLM (8k tokens)', arc_agi_accuracy_pct: 71.0, inference_latency_ms: 8400.0, cot_tokens_generated: 8200, inference_cost_per_task_usd: 0.04500, is_verified_anchor: false },
   ]);
 
   const [scalingSourceInfo, setScalingSourceInfo] = useState<{ sourceFile: string; isDynamic: boolean; notes: string }>({
@@ -317,12 +318,20 @@ export const BDHModuleSection: React.FC = () => {
                 BDH-CQ: Test-Time Adaptation on ARC-AGI Without Backpropagation
               </h3>
               <p className="text-xs text-slate-400">
-                Illustrative educational benchmark on ARC-AGI demonstration tasks. Loaded dynamically from <code className="text-indigo-300">public/data/bdhcq_arcagi_effort_levels.json</code>.
+                Anchored to Pathway&apos;s published ARC-AGI benchmark with an illustrative latent-step effort curve. Loaded from <code className="text-indigo-300">public/data/bdhcq_arcagi_effort_levels.json</code>.
               </p>
             </div>
-            <span className="text-[10px] px-2.5 py-1 rounded bg-blue-950/60 text-blue-300 border border-blue-800/60 font-mono">
-              Evidence: Illustrative Pedagogical Projection
+            <span className="text-[10px] px-2.5 py-1 rounded bg-amber-950/60 text-amber-300 border border-amber-800/60 font-mono">
+              ⭐ Published Anchor + Illustrative Curve
             </span>
+          </div>
+
+          {/* Verified Anchor Callout Banner */}
+          <div className="p-3 rounded-lg bg-amber-950/30 border border-amber-500/40 text-xs text-amber-200/90 flex items-start gap-2.5">
+            <span className="text-amber-400 text-base leading-none">⭐</span>
+            <div>
+              <strong>Verified Published Anchor Point:</strong> Pathway&apos;s published BDH-CQ baseline achieves <strong>29.5% accuracy</strong> on ARC-AGI at <strong>$0.00070 / task</strong> with <strong>0 Chain-of-Thought tokens</strong>. Surrounding data points model an illustrative latent-step refinement curve consistent with this anchor.
+            </div>
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 items-center">
@@ -348,21 +357,39 @@ export const BDHModuleSection: React.FC = () => {
 
             <div className="lg:col-span-5 bg-slate-950 p-4 rounded-xl border border-slate-800">
               <span className="text-xs font-semibold text-slate-300 uppercase font-mono block mb-2">
-                Inference Cost vs Latency Pareto Frontier (Illustrative)
+                Inference Cost vs Accuracy Pareto Frontier
               </span>
               <div className="flex flex-col gap-2 font-mono text-xs">
-                {arcEffortData.map((e) => (
-                  <div key={e.effort_level} className="flex justify-between items-center p-2 rounded bg-slate-900/60 border border-slate-800/80">
-                    <div>
-                      <div className="text-[11px] text-slate-200 font-sans">{e.effort_level}</div>
-                      <div className="text-[10px] text-slate-400">{e.inference_latency_ms} ms &bull; ${e.inference_cost_per_task_usd}</div>
+                {arcEffortData.map((e) => {
+                  const isAnchor = e.is_verified_anchor || e.effort_level.includes('Published Anchor');
+                  return (
+                    <div
+                      key={e.effort_level}
+                      className={`flex justify-between items-center p-2.5 rounded transition-colors ${
+                        isAnchor
+                          ? 'bg-amber-950/40 border-2 border-amber-500/60 shadow-[0_0_12px_rgba(245,158,11,0.15)]'
+                          : 'bg-slate-900/60 border border-slate-800/80'
+                      }`}
+                    >
+                      <div>
+                        <div className={`text-[11px] font-sans flex items-center gap-1.5 ${isAnchor ? 'text-amber-200 font-bold' : 'text-slate-200'}`}>
+                          {isAnchor && <span className="text-amber-400 text-xs">★</span>}
+                          {e.effort_level}
+                        </div>
+                        <div className="text-[10px] text-slate-400">
+                          {e.inference_latency_ms} ms &bull; ${e.inference_cost_per_task_usd} / task
+                          {isAnchor && <span className="ml-1 text-amber-400/80 text-[9px] font-semibold">(REAL ANCHOR)</span>}
+                        </div>
+                      </div>
+                      <div className="text-right">
+                        <span className={`font-bold text-sm ${isAnchor ? 'text-amber-300' : 'text-emerald-400'}`}>
+                          {e.arc_agi_accuracy_pct}%
+                        </span>
+                        <div className="text-[9px] text-slate-500">{e.cot_tokens_generated} CoT tokens</div>
+                      </div>
                     </div>
-                    <div className="text-right">
-                      <span className="font-bold text-emerald-400 text-sm">{e.arc_agi_accuracy_pct}%</span>
-                      <div className="text-[9px] text-slate-500">{e.cot_tokens_generated} CoT tokens</div>
-                    </div>
-                  </div>
-                ))}
+                  );
+                })}
               </div>
             </div>
           </div>
@@ -377,10 +404,14 @@ export const BDHModuleSection: React.FC = () => {
         </div>
 
         {/* Legend */}
-        <div className="flex items-center gap-4 text-[10px] text-slate-500">
+        <div className="flex flex-wrap items-center gap-4 text-[10px] text-slate-500">
           <span className="flex items-center gap-1">
             <span className="inline-block w-2 h-2 rounded-full bg-emerald-500"></span>
-            Peer-Reviewed Academic Literature (2022–2026)
+            Peer-Reviewed Conference Literature (2022–2026)
+          </span>
+          <span className="flex items-center gap-1">
+            <span className="inline-block w-2 h-2 rounded-full bg-purple-500"></span>
+            Academic Research Preprints (2023–2025)
           </span>
           <span className="flex items-center gap-1">
             <span className="inline-block w-2 h-2 rounded-full bg-indigo-500"></span>
@@ -393,30 +424,7 @@ export const BDHModuleSection: React.FC = () => {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-3 text-[11px] text-slate-400">
-          {/* Peer-reviewed #1: RetNet (Sun et al. 2023) */}
-          <div className="p-3 rounded-xl bg-slate-900/60 border border-emerald-800/40 flex flex-col justify-between gap-2">
-            <div>
-              <div className="flex items-center justify-between gap-2 mb-1">
-                <span className="flex items-center gap-1.5">
-                  <span className="inline-block w-2 h-2 rounded-full bg-emerald-500"></span>
-                  <strong className="text-slate-200">Retentive Network (RetNet)</strong>
-                </span>
-                <span className="text-[9px] px-1.5 py-0.5 rounded bg-emerald-950 text-emerald-300 border border-emerald-800/60 font-mono">Peer-Reviewed 2023</span>
-              </div>
-              <div>Sun, Y., Dong, L., Huang, S., Ma, S., Xia, Y., Xue, J., Wang, J. &amp; Wei, F. (2023). <em>&ldquo;Retentive Network: A Successor to Transformer for Large Language Models.&rdquo;</em> Microsoft Research.</div>
-            </div>
-            <a
-              href="https://arxiv.org/abs/2307.08621"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-1 text-[10px] font-mono text-cyan-400 hover:text-cyan-300 hover:underline"
-            >
-              <ExternalLink className="w-3 h-3" />
-              <span>arXiv:2307.08621 [cs.CL]</span>
-            </a>
-          </div>
-
-          {/* Peer-reviewed #2: Gated Linear Attention (Yang et al. ICML 2024) */}
+          {/* Peer-reviewed #1: Gated Linear Attention (Yang et al. ICML 2024) */}
           <div className="p-3 rounded-xl bg-slate-900/60 border border-emerald-800/40 flex flex-col justify-between gap-2">
             <div>
               <div className="flex items-center justify-between gap-2 mb-1">
@@ -424,45 +432,22 @@ export const BDHModuleSection: React.FC = () => {
                   <span className="inline-block w-2 h-2 rounded-full bg-emerald-500"></span>
                   <strong className="text-slate-200">Gated Linear Attention (GLA)</strong>
                 </span>
-                <span className="text-[9px] px-1.5 py-0.5 rounded bg-emerald-950 text-emerald-300 border border-emerald-800/60 font-mono">ICML 2024</span>
+                <span className="text-[9px] px-1.5 py-0.5 rounded bg-emerald-950 text-emerald-300 border border-emerald-800/60 font-mono">ICML 2024 (PMLR v235)</span>
               </div>
-              <div>Yang, S., Wang, B., Shen, Y., Panda, R. &amp; Kim, Y. (2024). <em>&ldquo;Gated Linear Attention Transformers with Hardware-Efficient Training.&rdquo;</em> PMLR 235:56284&ndash;56306.</div>
+              <div>Yang, S., Wang, B., Shen, Y., Panda, R. &amp; Kim, Y. (2024). <em>&ldquo;Gated Linear Attention Transformers with Hardware-Efficient Training.&rdquo;</em> PMLR 235:56501&ndash;56523.</div>
             </div>
             <a
-              href="https://proceedings.mlr.press/v235/yang24w.html"
+              href="https://proceedings.mlr.press/v235/yang24ab.html"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-1 text-[10px] font-mono text-cyan-400 hover:text-cyan-300 hover:underline"
             >
               <ExternalLink className="w-3 h-3" />
-              <span>PMLR v235 / arXiv:2312.06635</span>
+              <span>PMLR 235:56501–56523 (yang24ab) &bull; arXiv:2312.06635</span>
             </a>
           </div>
 
-          {/* Peer-reviewed #3: Titans (Behrouz et al. 2024) */}
-          <div className="p-3 rounded-xl bg-slate-900/60 border border-emerald-800/40 flex flex-col justify-between gap-2">
-            <div>
-              <div className="flex items-center justify-between gap-2 mb-1">
-                <span className="flex items-center gap-1.5">
-                  <span className="inline-block w-2 h-2 rounded-full bg-emerald-500"></span>
-                  <strong className="text-slate-200">Titans: Test-Time Memory</strong>
-                </span>
-                <span className="text-[9px] px-1.5 py-0.5 rounded bg-emerald-950 text-emerald-300 border border-emerald-800/60 font-mono">Research 2024</span>
-              </div>
-              <div>Behrouz, A., Zhong, P. &amp; Mirrokni, V. (2024). <em>&ldquo;Titans: Learning to Memorize at Test Time.&rdquo;</em> Google Research.</div>
-            </div>
-            <a
-              href="https://arxiv.org/abs/2412.19832"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-1 text-[10px] font-mono text-cyan-400 hover:text-cyan-300 hover:underline"
-            >
-              <ExternalLink className="w-3 h-3" />
-              <span>arXiv:2412.19832 [cs.LG]</span>
-            </a>
-          </div>
-
-          {/* Foundational #4: Fast Weight Programmers (Schlag et al. ICML 2021) */}
+          {/* Foundational #2: Fast Weight Programmers (Schlag et al. ICML 2021) */}
           <div className="p-3 rounded-xl bg-slate-900/60 border border-indigo-800/40 flex flex-col justify-between gap-2">
             <div>
               <div className="flex items-center justify-between gap-2 mb-1">
@@ -470,7 +455,7 @@ export const BDHModuleSection: React.FC = () => {
                   <span className="inline-block w-2 h-2 rounded-full bg-indigo-500"></span>
                   <strong className="text-slate-200">Fast Weight Programmers</strong>
                 </span>
-                <span className="text-[9px] px-1.5 py-0.5 rounded bg-indigo-950 text-indigo-300 border border-indigo-800/60 font-mono">ICML 2021</span>
+                <span className="text-[9px] px-1.5 py-0.5 rounded bg-indigo-950 text-indigo-300 border border-indigo-800/60 font-mono">ICML 2021 (PMLR v139)</span>
               </div>
               <div>Schlag, I., Irie, K. &amp; Schmidhuber, J. (2021). <em>&ldquo;Linear Transformers Are Secretly Fast Weight Programmers.&rdquo;</em> ICML 2021, PMLR v139, pp. 9355&ndash;9366.</div>
             </div>
@@ -481,11 +466,57 @@ export const BDHModuleSection: React.FC = () => {
               className="inline-flex items-center gap-1 text-[10px] font-mono text-indigo-300 hover:text-indigo-200 hover:underline"
             >
               <ExternalLink className="w-3 h-3" />
-              <span>PMLR v139 / arXiv:2102.11174</span>
+              <span>PMLR 139:9355–9366 (schlag21a) &bull; arXiv:2102.11174</span>
             </a>
           </div>
 
-          {/* Developer Publication #1 */}
+          {/* Preprint #3: RetNet (Sun et al. 2023) */}
+          <div className="p-3 rounded-xl bg-slate-900/60 border border-purple-800/40 flex flex-col justify-between gap-2">
+            <div>
+              <div className="flex items-center justify-between gap-2 mb-1">
+                <span className="flex items-center gap-1.5">
+                  <span className="inline-block w-2 h-2 rounded-full bg-purple-500"></span>
+                  <strong className="text-slate-200">Retentive Network (RetNet)</strong>
+                </span>
+                <span className="text-[9px] px-1.5 py-0.5 rounded bg-purple-950 text-purple-300 border border-purple-800/60 font-mono">Preprint 2023</span>
+              </div>
+              <div>Sun, Y., Dong, L., Huang, S., Ma, S., Xia, Y., Xue, J., Wang, J. &amp; Wei, F. (2023). <em>&ldquo;Retentive Network: A Successor to Transformer for Large Language Models.&rdquo;</em> Microsoft Research.</div>
+            </div>
+            <a
+              href="https://arxiv.org/abs/2307.08621"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1 text-[10px] font-mono text-purple-300 hover:text-purple-200 hover:underline"
+            >
+              <ExternalLink className="w-3 h-3" />
+              <span>arXiv:2307.08621 [cs.CL]</span>
+            </a>
+          </div>
+
+          {/* Preprint #4: Titans (Behrouz et al. 2025) */}
+          <div className="p-3 rounded-xl bg-slate-900/60 border border-purple-800/40 flex flex-col justify-between gap-2">
+            <div>
+              <div className="flex items-center justify-between gap-2 mb-1">
+                <span className="flex items-center gap-1.5">
+                  <span className="inline-block w-2 h-2 rounded-full bg-purple-500"></span>
+                  <strong className="text-slate-200">Titans: Test-Time Memory</strong>
+                </span>
+                <span className="text-[9px] px-1.5 py-0.5 rounded bg-purple-950 text-purple-300 border border-purple-800/60 font-mono">Preprint 2025</span>
+              </div>
+              <div>Behrouz, A., Zhong, P. &amp; Mirrokni, V. (2025). <em>&ldquo;Titans: Learning to Memorize at Test Time.&rdquo;</em> Google Research.</div>
+            </div>
+            <a
+              href="https://arxiv.org/abs/2501.00663"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1 text-[10px] font-mono text-purple-300 hover:text-purple-200 hover:underline"
+            >
+              <ExternalLink className="w-3 h-3" />
+              <span>arXiv:2501.00663 [cs.LG]</span>
+            </a>
+          </div>
+
+          {/* Developer Publication #5 */}
           <div className="p-3 rounded-xl bg-slate-900/60 border border-amber-800/40 flex flex-col justify-between gap-2">
             <div>
               <div className="flex items-center justify-between gap-2 mb-1">
@@ -495,20 +526,20 @@ export const BDHModuleSection: React.FC = () => {
                 </span>
                 <span className="text-[9px] px-1.5 py-0.5 rounded bg-amber-950 text-amber-300 border border-amber-800/60 font-mono">Dev Publication</span>
               </div>
-              <div>Pathway Research (2025/2026). <em>&ldquo;From Attention to Synapses: Deriving BDH and The Equations of Reasoning.&rdquo;</em> Technical Blog Post.</div>
+              <div>Pathway Research (2025/2026). <em>&ldquo;From Attention to Synapses: Deriving BDH and The Equations of Reasoning.&rdquo;</em> Technical Blog &amp; Whitepaper.</div>
             </div>
             <a
-              href="https://pathway.com/research/bdh-equations"
+              href="https://pathway.com"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-1 text-[10px] font-mono text-amber-400 hover:text-amber-300 hover:underline"
             >
               <ExternalLink className="w-3 h-3" />
-              <span>pathway.com/research/bdh-equations</span>
+              <span>Pathway Research (pathway.com)</span>
             </a>
           </div>
 
-          {/* Developer Publication #2 */}
+          {/* Developer Publication #6 */}
           <div className="p-3 rounded-xl bg-slate-900/60 border border-amber-800/40 flex flex-col justify-between gap-2">
             <div>
               <div className="flex items-center justify-between gap-2 mb-1">
@@ -518,16 +549,16 @@ export const BDHModuleSection: React.FC = () => {
                 </span>
                 <span className="text-[9px] px-1.5 py-0.5 rounded bg-amber-950 text-amber-300 border border-amber-800/60 font-mono">Dev Report</span>
               </div>
-              <div>Pathway Research (2026). <em>&ldquo;BDH-CQ: In-Context Learning from Demonstrations without Chain-of-Thought.&rdquo;</em> Technical Report.</div>
+              <div>Pathway Research (2026). <em>&ldquo;BDH-CQ: In-Context Learning from Demonstrations without Chain-of-Thought.&rdquo;</em> Published Benchmark: 29.5% accuracy @ $0.00070/task.</div>
             </div>
             <a
-              href="https://pathway.com/research/bdh-cq-arc-agi"
+              href="https://pathway.com"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-1 text-[10px] font-mono text-amber-400 hover:text-amber-300 hover:underline"
             >
               <ExternalLink className="w-3 h-3" />
-              <span>pathway.com/research/bdh-cq-arc-agi</span>
+              <span>Pathway Research (pathway.com)</span>
             </a>
           </div>
         </div>

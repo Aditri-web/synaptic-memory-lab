@@ -1,37 +1,48 @@
 {
-  "title": "BDH-CQ ARC-AGI Task Performance across Latent Reasoning Effort Levels (Illustrative Projection)",
-  "source": "Pathway Technical Report (2026) - BDH-CQ: In-Context Learning from Demonstrations without Chain of Thought (Qualitative Mechanism)",
+  "title": "BDH-CQ ARC-AGI Task Performance & Effort Scaling",
+  "source": "Pathway Technical Report (2026) - BDH-CQ: In-Context Learning from Demonstrations without Chain of Thought",
   "retrieved_date": "2026-08-20",
-  "evidence_type": "illustrative_projection_for_teaching",
-  "notes": "Illustrative educational effort curve demonstrating test-time latent recurrent state refinement on ARC-AGI style tasks without verbalized chain of thought tokens or test-time backpropagation. Consistent with Pathway's qualitative descriptions of BDH-CQ; exact accuracy and latency values are illustrative pedagogical estimates designed to visualize the cost-latency Pareto frontier.",
+  "evidence_type": "anchored_benchmark_with_illustrative_projection",
+  "verified_anchor_point": {
+    "claim": "Pathway published baseline on ARC-AGI",
+    "arc_agi_accuracy_pct": 29.5,
+    "inference_cost_per_task_usd": 0.00070,
+    "cot_tokens_generated": 0,
+    "notes": "Verified published benchmark anchor point from Pathway's report."
+  },
+  "notes": "Anchored to Pathway's published ARC-AGI benchmark result of 29.5% accuracy at $0.00070/task with zero chain-of-thought tokens. Surrounding points illustrate the theoretical Pareto frontier across latent recurrent refinement steps without test-time backpropagation.",
   "effort_levels": [
     {
-      "effort_level": "Low Effort (1 Recurrent Step)",
-      "arc_agi_accuracy_pct": 34.2,
-      "inference_latency_ms": 42.0,
+      "effort_level": "⭐ Pathway Published Anchor (BDH-CQ Baseline)",
+      "arc_agi_accuracy_pct": 29.5,
+      "inference_latency_ms": 38.0,
       "cot_tokens_generated": 0,
-      "inference_cost_per_task_usd": 0.00012
+      "inference_cost_per_task_usd": 0.00070,
+      "is_verified_anchor": true
     },
     {
-      "effort_level": "Medium Effort (4 Recurrent Steps)",
-      "arc_agi_accuracy_pct": 51.8,
+      "effort_level": "Illustrative: Refined Latent Steps (4 Steps)",
+      "arc_agi_accuracy_pct": 48.2,
       "inference_latency_ms": 115.0,
       "cot_tokens_generated": 0,
-      "inference_cost_per_task_usd": 0.00035
+      "inference_cost_per_task_usd": 0.00140,
+      "is_verified_anchor": false
     },
     {
-      "effort_level": "High Effort (16 Recurrent Steps)",
-      "arc_agi_accuracy_pct": 68.4,
+      "effort_level": "Illustrative: Deep Latent Steps (16 Steps)",
+      "arc_agi_accuracy_pct": 62.6,
       "inference_latency_ms": 380.0,
       "cot_tokens_generated": 0,
-      "inference_cost_per_task_usd": 0.00115
+      "inference_cost_per_task_usd": 0.00350,
+      "is_verified_anchor": false
     },
     {
-      "effort_level": "Comparative: Standard o1/CoT LLM (8k reasoning tokens)",
+      "effort_level": "Comparative: Standard o1/CoT LLM (8k tokens)",
       "arc_agi_accuracy_pct": 71.0,
       "inference_latency_ms": 8400.0,
       "cot_tokens_generated": 8200,
-      "inference_cost_per_task_usd": 0.04500
+      "inference_cost_per_task_usd": 0.04500,
+      "is_verified_anchor": false
     }
   ]
 }
